@@ -4,6 +4,7 @@ namespace App\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use App\Service\GameService;
+use App\Entity\Board;
 
 class gameVictoryTest extends WebTestCase
 { private $serv;
@@ -17,18 +18,25 @@ class gameVictoryTest extends WebTestCase
         $this->serv = new GameService($entityManager);
     }
 
-    public function testgameVictory(Board $board)
+    public function testgameVictory()
     
     {
        
-         $tablero= new Board ();
-                
-        $p = $this->serv->gameVictory('');
-         new tablero= ('');
-         $board->setPositions($positions); $board = new Board();
-         $positions = array_fill(0, 9, null);
-         $board->setPositions($positions);
-        $this->assertEquals('Ana', $p->getName(), 'right name');
-        $this->assertGreaterThan(0, $p->getId(), 'positive id');
+         $tablero = new Board ();
+         
+         $positions = array(
+             'x',null,'x', 
+             '0','x',null,
+             '0','x','x',);
+
+         $tablero->setPositions($positions);
+         var_dump($positions);
+         $p = $this->serv->gameVictory($tablero);
+
+         
+        $this->assertEquals($p, array(0,4,8));
+              
+
+     
     }
 }
