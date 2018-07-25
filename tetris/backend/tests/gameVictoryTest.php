@@ -25,16 +25,17 @@ class gameVictoryTest extends WebTestCase
          $tablero = new Board ();
          
          $positions = array(
-             'x',null,'x', 
-             '0','x',null,
-             '0','x','x',);
+             'o',null,'x', 
+             'o','x',null,
+             'o','x','x',);
 
          $tablero->setPositions($positions);
          var_dump($positions);
          $p = $this->serv->gameVictory($tablero);
+         var_dump($p);
 
          
-        $this->assertEquals($p, array(0,4,8));
+        $this->assertEquals($p, array(0,3,6));
               
 
      
